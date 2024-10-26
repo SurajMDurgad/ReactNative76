@@ -9,17 +9,14 @@ import React from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  Text,
 } from 'react-native';
-import Animated from 'react-native-reanimated';
+import Splash from './components/Splash';
 
 
 function App(): React.JSX.Element {
   return (
     <SafeAreaView style={Styles.container}>
-      <Animated.View style={Styles.innerContainer}>
-        <Text>This is a test</Text>
-      </Animated.View>
+      <Splash />
     </SafeAreaView>
   );
 }
@@ -27,11 +24,6 @@ function App(): React.JSX.Element {
 const Styles = StyleSheet.create({
   container:{
     flex: 1,
-  },
-  innerContainer:{
-    flex: 1,
-    justifyContent:'center',
-    alignItems: 'center',
   },
 });
 
