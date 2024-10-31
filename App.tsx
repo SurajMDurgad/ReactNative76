@@ -1,22 +1,33 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
+import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import {
   SafeAreaView,
   StyleSheet,
 } from 'react-native';
+import Home from './components/Home';
 import Splash from './components/Splash';
 
+const Stack = createNativeStackNavigator();
 
 function App(): React.JSX.Element {
+
+  const Theme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: '#FFF',
+    },
+  };
+
   return (
     <SafeAreaView style={Styles.container}>
-      <Splash />
+      <NavigationContainer theme={Theme}>
+        <Stack.Navigator>
+          <Stack.Screen name="Splash" component={Splash} options={{ headerShown: false }} />
+          <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </SafeAreaView>
   );
 }

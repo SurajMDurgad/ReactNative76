@@ -13,8 +13,7 @@ import {
 } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withDelay, withSpring } from 'react-native-reanimated';
 
-
-const Splash = () => {
+const Splash = ({navigation}: any) => {
   const animatedValue = useSharedValue(0);
 
   useEffect(()=>{
@@ -42,6 +41,12 @@ const Splash = () => {
       ],
     };
   },[]);
+
+  useEffect(()=>{
+    setTimeout(()=>{
+      navigation.navigate('Home');
+    }, 4000);
+  });
 
   return (
     <View style={Styles.container}>
