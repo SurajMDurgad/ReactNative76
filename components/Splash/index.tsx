@@ -45,7 +45,7 @@ const Splash = ({navigation}: any) => {
   useEffect(()=>{
     setTimeout(()=>{
       navigation.navigate('Home');
-    }, 4000);
+    }, 3000);
   });
 
   return (

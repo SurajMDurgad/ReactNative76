@@ -9,23 +9,26 @@ import React, { useCallback, useEffect, useState } from 'react';
 import {
   FlatList,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 import EachItem, { Item } from './EachItem';
 import ListHeaderComponent from './ListHeaderComponent';
+import Loader from './Loader';
 
 
 
-const Home = () => {
+const Home = ({navigation}: any) => {
   const [allData, setAllData] = useState([]);
   const [dataToLoad, setDataToLoad] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const getData = useCallback(async ()=>{
+    setLoading(true);
     const data = await fetch('https://dummyjson.com/products?limit=0');
     const json = await data.json();
     setAllData(json.products);
     setDataToLoad(json.products.slice(0, 10));
+    setLoading(false);
   },[]);
 
   // onMount
@@ -36,8 +39,8 @@ const Home = () => {
   return (
     <View style={Styles.container}>
       {
-        dataToLoad.length === 0 ?
-        <Text>Loading...</Text> :
+        loading ?
+        <Loader /> :
         <FlatList
         ListHeaderComponent={ListHeaderComponent}
         data={dataToLoad}
